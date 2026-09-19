@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hype Content — Acesse seu sistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0a0a;
+    --bg-raised: #141414;
+    --bg-raised-hover: #1a1a1a;
+    --line: #262626;
+    --line-hover: #3a3a3a;
+    --ink: #f5f4f2;
+    --ink-dim: #8f8c86;
+    --ink-faint: #59564f;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 20% -5%, rgba(255,255,255,0.05), transparent 40%),
+      radial-gradient(circle at 90% 105%, rgba(255,255,255,0.035), transparent 45%);
+  }
+
+  .wrap{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 48px 20px 64px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    margin-bottom: 28px;
+  }
+
+  .logo{
+    display:flex;
+    align-items:center;
+    gap: 2px;
+    margin-bottom: 28px;
+  }
+
+  .logo .h1-mark{
+    width: 34px;
+    height: 34px;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+  }
+
+  .logo .logo-text{
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-left: 10px;
+    color: var(--ink);
+  }
+
+  h1{
+    font-weight: 800;
+    font-size: clamp(24px, 6vw, 30px);
+    letter-spacing: -0.02em;
+    line-height: 1.28;
+    margin-bottom: 12px;
+    max-width: 400px;
+  }
+
+  header p{
+    color: var(--ink-dim);
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 380px;
+  }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .tag{
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 6px 12px;
+  }
+
+  /* ---------- TAB NAV ---------- */
+  .tabnav{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display:flex;
+    justify-content:center;
+    gap: 6px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 5px;
+    margin: 0 auto 36px;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .tabbtn{
+    appearance:none;
+    border:none;
+    background: transparent;
+    color: var(--ink-dim);
+    font-family:'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    padding: 9px 18px;
+    border-radius: 100px;
+    cursor:pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .tabbtn.active{
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .tabpanel{ display:none; }
+  .tabpanel.active{ display:block; animation: fade 0.2s ease; }
+
+  @keyframes fade{ from{ opacity:0; transform: translateY(4px); } to{ opacity:1; transform:none; } }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap: 12px;
+    margin: 36px 0 6px;
+  }
+
+  .section-head:first-child{ margin-top: 0; }
+
+  .section-head .num{
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .section-head h2{
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background: var(--line);
+  }
+
+  .section-note{
+    color: var(--ink-dim);
+    font-size: 13px;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+
+  /* ---------- BUTTON LIST (agents/materials) ---------- */
+  .list{
+    display:flex;
+    flex-direction:column;
+    gap: 8px;
+  }
+
+  a.item{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-decoration:none;
+    color: var(--ink);
+    transition: border-color 0.15s ease, background 0.15s ease;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+
+  a.item:hover{
+    border-color: var(--line-hover);
+    background: var(--bg-raised-hover);
+  }
+
+  a.item:active{ background: #1e1e1e; }
+
+  .icon{
+    flex-shrink:0;
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--ink);
+  }
+
+  .icon svg{ width:18px; height:18px; }
+
+  .item-text{ flex:1; min-width:0; }
+
+  .item-text .title{
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+
+  .item-text .desc{
+    font-size: 12.5px;
+    color: var(--ink-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .arrow{
+    flex-shrink:0;
+    color: var(--ink-faint);
+    font-size: 16px;
+    transition: transform 0.15s ease, color 0.15s ease;
+  }
+
+  a.item:hover .arrow{ color: var(--ink); transform: translateX(2px); }
+
+  /* ---------- MANUAL DE PROMPTS ---------- */
+  .context-note{
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--ink);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 32px;
+  }
+
+  .context-note .cn-title{
+    font-weight: 700;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+
+  .context-note p{
+    color: var(--ink-dim);
+    font-size: 12.5px;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+
+  .context-note pre{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--ink);
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+
+  details.agent-group{
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  details.agent-group summary{
+    list-style: none;
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    padding: 15px 16px;
+    cursor: pointer;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+
+  details.agent-group summary::-webkit-details-marker{ display:none; }
+
+  details.agent-group summary .icon{ background: rgba(255,255,255,0.05); }
+
+  summary .item-text{ flex:1; min-width:0; }
+
+  summary .item-text .title{ font-size: 15px; font-weight:700; }
+  summary .item-text .desc{ font-size:12px; color:var(--ink-dim); white-space:normal; }
+
+  summary .chev{
+    flex-shrink:0;
+    color: var(--ink-faint);
+    transition: transform 0.2s ease;
+    font-size: 13px;
+  }
+
+  details.agent-group[open] summary .chev{ transform: rotate(90deg); }
+
+  .agent-body{
+    padding: 4px 14px 16px;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+  }
+
+  .prompt-card{
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .prompt-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .prompt-title{
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+
+  .copy-btn{
+    flex-shrink:0;
+    appearance:none;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+    color: var(--ink-dim);
+    font-family:'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    padding: 6px 11px;
+    border-radius: 100px;
+    cursor:pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    white-space:nowrap;
+  }
+
+  .copy-btn:hover{ border-color: var(--line-hover); color: var(--ink); }
+  .copy-btn.copied{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  .prompt-text{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top: 52px;
+    text-align:center;
+    color: var(--ink-faint);
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  footer .brand{
+    color: var(--ink-dim);
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 480px){
+    .wrap{ padding: 40px 16px 56px; }
+    header{ margin-bottom: 22px; }
+    header p{ font-size: 14px; }
+    .tabnav{ margin-bottom: 30px; }
+    .tabbtn{ padding: 8px 14px; font-size: 12px; }
+    .section-head{ margin: 28px 0 6px; }
+    a.item{ padding: 13px 14px; gap: 12px; }
+    .icon{ width: 36px; height: 36px; }
+    .icon svg{ width: 16px; height: 16px; }
+    .item-text .title{ font-size: 14px; }
+    .item-text .desc{ font-size: 12px; }
+    .prompt-head{ flex-wrap:wrap; }
+  }
+
+  @media (max-width: 340px){
+    .list > a .item-text .desc{ display:none; }
+  }
+
+  @media (hover: none){
+    a.item:hover{ border-color: var(--line); background: var(--bg-raised); }
+    a.item:hover .arrow{ color: var(--ink-faint); transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="logo">
+      <div class="h1-mark">H</div>
+      <span class="logo-text">Hype Content</span>
+    </div>
+    <h1>Seu sistema de conteúdo está pronto</h1>
+    <p>Acesse os agentes de IA, os materiais e o manual de prompts do seu produto.</p>
+    <div class="tag-row">
+      <span class="tag">Carrosséis</span>
+      <span class="tag">Reels</span>
+      <span class="tag">Imagens</span>
+      <span class="tag">Estratégia</span>
+    </div>
+  </header>
+
+  <nav class="tabnav">
+    <button class="tabbtn active" data-tab="inicio">Início</button>
+    <button class="tabbtn" data-tab="prompts">Manual de Prompts</button>
+  </nav>
+
+  <!-- ==================== TAB: INÍCIO ==================== -->
+  <section class="tabpanel active" id="tab-inicio">
+
+    <div class="section-head">
+      <span class="num">01</span>
+      <h2>Agentes de IA</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="section-note">Cada agente foi treinado para uma função específica dentro da sua estratégia de conteúdo.</p>
+
+    <div class="list">
+
+      <a class="item" href="https://chatgpt.com/g/g-695c37a97d5081918659e2b1b9bee486-copy" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Copy</div>
+          <div class="desc">Transforma uma ideia em narrativa</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="item" href="https://chatgpt.com/g/g-695c306fc7608191bce4730fd1372329-arquiteto-de-reels-persuasivos" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6l10 6-10 6V6z"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Arquiteto de Reels</div>
+          <div class="desc">Gancho, desenvolvimento e CTA</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="item" href="https://chatgpt.com/g/g-69ff92cb29d48191a3f07b2a8d4a1d65-design-ai" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9.5" r="1.5"/><path d="M20 15l-4.5-4.5L9 17"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Design IA</div>
+          <div class="desc">Transforma conteúdo em carrosséis</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="item" href="https://chatgpt.com/g/g-69ff9643e2b88191ae81f423fcdc8bd5-visual-ai" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.5"/><path d="M3 12c2.5-5 6-7 9-7s6.5 2 9 7c-2.5 5-6 7-9 7s-6.5-2-9-7z"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Visual AI</div>
+          <div class="desc">Gera imagens para suas peças</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="item" href="https://chatgpt.com/g/g-69ff879b62648191956a963f886004a7-strategy" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Strategy</div>
+          <div class="desc">Encontra novos ângulos de conteúdo</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="item" href="https://chatgpt.com/g/g-69ff837d3ec08191a0f6eb39a3f4079b-ideas-estrategista-de-ideias" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.9 1 1 1.6l.1 1h4.8l.1-1c.1-.6.5-1.2 1-1.6A6 6 0 0 0 12 3z"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Ideas</div>
+          <div class="desc">Mantém seu banco criativo cheio</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+
+    <div class="section-head">
+      <span class="num">02</span>
+      <h2>Materiais</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="section-note">Guias práticos para aplicar no seu perfil e na sua rotina de conteúdo.</p>
+
+    <div class="list">
+
+      <a class="item" href="checklist-perfil-instagram.pdf" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Checklist de Perfil</div>
+          <div class="desc">Revise os pontos essenciais do seu Instagram</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="item" href="calendario-ideal-instagram.pdf" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Calendário de Conteúdo</div>
+          <div class="desc">Organize o que produzir e quando publicar</div>
+        </span>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- ==================== TAB: MANUAL DE PROMPTS ==================== -->
+  <section class="tabpanel" id="tab-prompts">
+
+    <div class="context-note">
+      <div class="cn-title">Antes de começar</div>
+      <p>Envie este prompt de contexto para cada agente antes do primeiro uso. Ele garante que as respostas sigam o posicionamento da sua marca.</p>
+      <pre id="context-prompt">Antes de criarmos qualquer conteúdo, considere estas informações sobre minha marca:
+
+Marca/profissional: [nome]
+Nicho: [nicho]
+Produto ou serviço: [o que vende]
+Público-alvo: [quem deseja atingir]
+Principal problema do público: [dor]
+Principal resultado prometido: [transformação]
+Diferencial: [por que escolher você]
+Tom de voz: [direto, descontraído, sofisticado, provocativo etc.]
+Objetivo atual: [crescer, engajar, gerar autoridade, captar leads ou vender]
+CTA principal: [seguir, comentar, enviar mensagem, clicar no link etc.]
+
+Não invente informações, resultados, provas sociais ou experiências. Escreva de maneira humana, específica e compatível com o posicionamento apresentado.</pre>
+      <button class="copy-btn" onclick="copyBlock(this,'context-prompt')">Copiar prompt de contexto</button>
+    </div>
+
+    <!-- AGENTE COPY -->
+    <details class="agent-group" open>
+      <summary>
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Agente Copy</div>
+          <div class="desc">4 prompts</div>
+        </span>
+        <span class="chev">▶</span>
+      </summary>
+      <div class="agent-body">
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Copy para anúncio</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie uma copy de anúncio para vender [produto/serviço].
+
+Público: [público-alvo]
+Problema principal: [dor]
+Desejo principal: [resultado desejado]
+Diferencial da oferta: [diferencial]
+Condição ou preço: [informação]
+Objetivo: [venda, cadastro, WhatsApp etc.]
+Tom: [tom de voz]
+
+Estruture a copy com:
+1. Uma headline que interrompa o padrão
+2. Identificação com o problema
+3. Intensificação da dor sem exageros
+4. Apresentação da solução
+5. Benefícios concretos
+6. Quebra da principal objeção
+7. CTA direto
+
+Crie três opções de headline e não use frases genéricas ou promessas impossíveis.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Legenda estratégica</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Escreva uma legenda para um conteúdo sobre [tema].
+
+Meu público é [público].
+O objetivo da publicação é [engajamento, autoridade ou venda].
+A mensagem principal é [mensagem].
+O tom deve ser [tom de voz].
+
+Comece com uma frase que gere curiosidade, desenvolva uma narrativa fácil de ler, entregue uma conclusão útil e finalize com um CTA coerente. Use parágrafos curtos e linguagem humana. Não repita literalmente o conteúdo da publicação.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Storytelling de autoridade</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Transforme esta experiência em uma história que gere autoridade e conexão:
+
+[conte a experiência, situação ou aprendizado]
+
+Relacione a história com [produto, serviço ou assunto].
+Público: [público-alvo].
+Objetivo: [ensinar, gerar conexão ou vender].
+
+Estruture em:
+1. Contexto
+2. Problema ou conflito
+3. Descoberta
+4. Mudança de perspectiva
+5. Aprendizado aplicável
+6. CTA
+
+Não dramatize nem invente acontecimentos.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Copy de vendas completa</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie uma copy persuasiva para apresentar [produto/serviço].
+
+Público-alvo: [público]
+Situação atual do público: [problema]
+Resultado desejado: [transformação]
+Como a solução funciona: [mecanismo]
+Benefícios: [benefícios]
+Diferenciais: [diferenciais]
+Objeções comuns: [objeções]
+Oferta: [preço, bônus e condição]
+CTA: [ação]
+
+Organize a mensagem em problema, identificação, nova possibilidade, solução, benefícios, quebra de objeções, oferta e CTA. Mantenha a linguagem natural, específica e convincente, sem parecer uma propaganda exagerada.</pre>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- AGENTE REELS -->
+    <details class="agent-group">
+      <summary>
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6l10 6-10 6V6z"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Agente Reels</div>
+          <div class="desc">4 prompts</div>
+        </span>
+        <span class="chev">▶</span>
+      </summary>
+      <div class="agent-body">
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Roteiro de Reels educativo</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um roteiro de Reels sobre [tema] para [público-alvo].
+
+Objetivo: [atrair, ensinar, gerar autoridade ou vender]
+Duração: [30, 45 ou 60 segundos]
+Tom: [tom de voz]
+CTA: [ação desejada]
+
+Entregue:
+1. Três opções de gancho para os primeiros 3 segundos
+2. Roteiro completo das falas
+3. Sugestões de cenas e cortes
+4. Textos curtos para aparecerem na tela
+5. CTA final
+6. Legenda complementar
+
+Use frases curtas, ritmo dinâmico e uma ideia central. Evite introduções como "Olá, pessoal" e não demore para entregar valor.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Reels com potencial de compartilhamento</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um Reels altamente compartilhável sobre [tema].
+
+O público acredita que [crença comum].
+Mas quero mostrar que [nova perspectiva].
+Meu posicionamento é [posicionamento].
+Duração máxima: [tempo].
+
+Construa o roteiro com:
+1. Gancho provocativo
+2. Situação com a qual o público se identifica
+3. Quebra da crença
+4. Explicação simples
+5. Exemplo prático
+6. Conclusão memorável
+7. CTA para compartilhar ou salvar
+
+Crie também três variações de gancho.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Reels para vender</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um roteiro de Reels para vender [produto/serviço] sem parecer uma propaganda forçada.
+
+Público: [público]
+Dor: [problema]
+Desejo: [resultado]
+Solução: [produto/serviço]
+Diferencial: [diferencial]
+Objeção principal: [objeção]
+CTA: [ação]
+
+Comece por uma situação real do público, demonstre o impacto do problema, apresente uma nova forma de resolvê-lo e conecte naturalmente a solução. Inclua falas, cenas, texto na tela e legenda.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Modelar um Reels de referência</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Analise este roteiro ou conteúdo de referência:
+
+[cole o roteiro, transcrição ou descrição]
+
+Identifique:
+1. Gancho utilizado
+2. Estrutura narrativa
+3. Elementos que sustentam a retenção
+4. Emoção despertada
+5. Motivo pelo qual funciona
+
+Depois, crie um roteiro original utilizando a mesma lógica, mas adaptado ao meu nicho [nicho], ao tema [tema] e ao público [público]. Não copie frases, exemplos ou identidade do conteúdo original.</pre>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- AGENTE CARROSSEL -->
+    <details class="agent-group">
+      <summary>
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9.5" r="1.5"/><path d="M20 15l-4.5-4.5L9 17"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Agente Carrossel</div>
+          <div class="desc">4 prompts</div>
+        </span>
+        <span class="chev">▶</span>
+      </summary>
+      <div class="agent-body">
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Carrossel educativo</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um carrossel educativo sobre [tema] para [público-alvo].
+
+Objetivo: [ensinar, gerar autoridade, compartilhamentos ou salvamentos]
+Número de slides: [quantidade]
+Tom: [tom de voz]
+CTA: [ação desejada]
+
+Entregue:
+1. Cinco opções de capa
+2. Copy de cada slide
+3. Uma ideia principal por slide
+4. Síntese ou virada antes do CTA
+5. CTA final
+6. Legenda complementar
+7. Direção visual para cada slide
+
+A capa deve apresentar uma promessa, curiosidade ou contraste. Mantenha os textos curtos, conectados e fáceis de consumir.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Carrossel para quebrar objeção</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um carrossel para quebrar esta objeção:
+
+"[objeção do público]"
+
+Meu produto ou serviço é [oferta].
+Meu público é [público].
+A verdade que quero demonstrar é [argumento].
+O objetivo final é [objetivo].
+
+Construa o conteúdo sem confrontar ou diminuir o leitor. Primeiro valide a preocupação, depois mostre por que essa crença pode estar incompleta, apresente argumentos e exemplos e finalize indicando o próximo passo.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Carrossel de autoridade</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um carrossel que fortaleça minha autoridade sobre [assunto].
+
+Experiência ou conhecimento que possuo: [contexto]
+Público: [público]
+Problema que desejo resolver: [problema]
+Método ou opinião central: [ideia]
+Tom: [tom de voz]
+
+Organize o conteúdo com uma capa forte, contextualização, erros comuns, explicação do meu ponto de vista, aplicação prática e CTA. Não invente números, cases ou resultados.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Transformar uma ideia em carrossel</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Transforme esta ideia bruta em um carrossel estratégico:
+
+[escreva a ideia]
+
+Público: [público]
+Objetivo: [atração, autoridade, engajamento ou venda]
+Quantidade de slides: [número]
+CTA: [ação]
+
+Aprofunde a ideia sem adicionar informações duvidosas. Crie cinco alternativas de capa e escolha a mais forte, explicando brevemente o motivo.</pre>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- AGENTE STORIES -->
+    <details class="agent-group">
+      <summary>
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Agente Stories</div>
+          <div class="desc">4 prompts</div>
+        </span>
+        <span class="chev">▶</span>
+      </summary>
+      <div class="agent-body">
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Sequência diária de Stories</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie uma sequência de [quantidade] Stories sobre [tema].
+
+Público: [público]
+Objetivo: [conexão, interação, autoridade ou venda]
+Contexto do dia: [acontecimento, rotina ou assunto]
+Tom: [tom de voz]
+
+Para cada Story, entregue:
+1. Formato recomendado: vídeo, foto, texto ou print
+2. Texto ou fala
+3. Direção visual
+4. Sticker ou interação, quando fizer sentido
+5. Transição para o próximo Story
+
+A sequência deve parecer uma conversa espontânea, não uma apresentação corporativa.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Stories para vender</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie uma sequência de Stories para vender [produto/serviço].
+
+Público: [público]
+Dor: [problema]
+Resultado desejado: [desejo]
+Diferencial: [diferencial]
+Prova disponível: [prova real ou "não tenho"]
+Objeção: [objeção]
+Oferta: [condição]
+CTA: [link, direct ou WhatsApp]
+
+Estruture a sequência com identificação, problema, mudança de perspectiva, solução, benefício, quebra de objeção, oferta e CTA. Indique exatamente o que falar ou escrever em cada quadro. Não invente escassez ou prova social.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Stories para gerar interação</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie uma sequência de Stories interativos sobre [assunto].
+
+Meu público é [público].
+Quero descobrir [informação que deseja obter].
+Quantidade de Stories: [número].
+
+Use enquete, caixa de perguntas, quiz ou escala de maneira estratégica. Comece com uma situação fácil de reconhecer, faça perguntas simples e termine abrindo uma conversa no direct. Explique como posso utilizar as respostas em conteúdos futuros.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Stories para lançamento ou campanha</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Monte uma sequência de Stories para a campanha de [produto, evento ou lançamento].
+
+Etapa da campanha: [aquecimento, abertura, vendas ou encerramento]
+Público: [público]
+Mensagem principal: [mensagem]
+Oferta: [oferta]
+Prazo real: [prazo]
+CTA: [ação]
+
+Crie uma narrativa quadro a quadro, com falas, textos, formatos visuais, interações e transições. Ajuste o nível de venda à etapa da campanha e não utilize urgência falsa.</pre>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- AGENTE DESIGN + IMAGEM -->
+    <details class="agent-group">
+      <summary>
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.5"/><path d="M3 12c2.5-5 6-7 9-7s6.5 2 9 7c-2.5 5-6 7-9 7s-6.5-2-9-7z"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Agente Design + Imagem</div>
+          <div class="desc">4 prompts</div>
+        </span>
+        <span class="chev">▶</span>
+      </summary>
+      <div class="agent-body">
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Direção visual para publicação</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie a direção visual completa para um post sobre [tema].
+
+Formato: [post estático, carrossel, capa de Reels ou Stories]
+Objetivo: [objetivo]
+Público: [público]
+Identidade visual: [cores, fontes e estilo]
+Texto principal: [headline]
+Sensação desejada: [premium, moderna, humana, enérgica etc.]
+
+Entregue:
+1. Conceito criativo
+2. Hierarquia das informações
+3. Composição do layout
+4. Paleta com códigos de cores
+5. Sugestões de tipografia
+6. Elementos gráficos
+7. Tratamento das imagens
+8. Prompt para gerar a imagem principal
+
+Priorize legibilidade, contraste e aparência profissional. Evite excesso de elementos.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Prompt para imagem ultrarrealista</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um prompt detalhado para gerar uma imagem ultrarrealista de [pessoa, produto ou cena].
+
+Objetivo da imagem: [objetivo]
+Ambiente: [local]
+Personagem ou objeto: [descrição]
+Roupa e aparência: [descrição]
+Enquadramento: [close, meio corpo, plano aberto etc.]
+Iluminação: [descrição]
+Cores da marca: [cores]
+Proporção: [1:1, 4:5, 9:16 etc.]
+Sensação: [sensação desejada]
+
+O resultado deve parecer uma fotografia profissional, com pele e texturas naturais, iluminação coerente e composição publicitária. Entregue o prompt final e uma lista de elementos negativos a evitar.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Design de carrossel</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie uma direção visual slide a slide para este carrossel:
+
+[cole a copy completa]
+
+Identidade visual: [cores, fontes e estilo]
+Público: [público]
+Objetivo: [objetivo]
+Referência estética: [descrição ou referência]
+Proporção: [proporção]
+
+Para cada slide, indique:
+1. Distribuição dos textos
+2. Tamanho e hierarquia
+3. Imagem ou elemento visual
+4. Cor predominante
+5. Forma de conduzir o olhar
+6. Continuidade com o próximo slide
+
+Mantenha unidade visual e evite layouts repetitivos ou com aparência genérica de IA.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Recriar uma referência sem copiar</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Analise a imagem de referência enviada e identifique sua composição, hierarquia, paleta, iluminação, tipografia e sensação visual.
+
+Depois, desenvolva um novo conceito inspirado nesses princípios para minha marca:
+
+Marca: [nome]
+Conteúdo: [conteúdo]
+Cores: [cores]
+Público: [público]
+Formato: [formato]
+
+Preserve apenas a lógica estética e crie uma composição original. Não copie logotipos, textos, personagens ou elementos exclusivos da referência.</pre>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- AGENTE IDEIAS -->
+    <details class="agent-group">
+      <summary>
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.9 1 1 1.6l.1 1h4.8l.1-1c.1-.6.5-1.2 1-1.6A6 6 0 0 0 12 3z"/></svg>
+        </span>
+        <span class="item-text">
+          <div class="title">Agente Ideias</div>
+          <div class="desc">5 prompts</div>
+        </span>
+        <span class="chev">▶</span>
+      </summary>
+      <div class="agent-body">
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Banco de ideias estratégicas</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie 30 ideias de conteúdo para o nicho [nicho].
+
+Público-alvo: [público]
+Produto ou serviço: [oferta]
+Objetivo: [crescer, engajar, gerar autoridade ou vender]
+Principais dores: [dores]
+Principais desejos: [desejos]
+Objeções: [objeções]
+Formatos desejados: [Reels, carrosséis e Stories]
+
+Divida as ideias entre:
+1. Atração
+2. Educação
+3. Autoridade
+4. Conexão
+5. Quebra de objeções
+6. Conversão
+
+Para cada ideia, informe o formato, tema, ângulo, gancho e objetivo estratégico. Evite ideias genéricas como "dê cinco dicas".</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Ideias baseadas nas dores do público</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Meu público é [público] e enfrenta estes problemas:
+
+[lista de dores, dúvidas e dificuldades]
+
+Transforme cada problema em ideias de conteúdo específicas. Para cada uma, crie:
+1. Tema
+2. Gancho
+3. Melhor formato
+4. Mensagem principal
+5. CTA
+6. Estágio do funil
+
+Priorize situações que o público realmente vive e utiliza no próprio vocabulário.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Criar linhas editoriais</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie uma estratégia de linhas editoriais para minha marca.
+
+Nicho: [nicho]
+Público: [público]
+Oferta: [produto/serviço]
+Posicionamento: [posicionamento]
+Objetivo: [objetivo]
+Frequência de publicação: [frequência]
+Tom de voz: [tom]
+
+Defina de quatro a seis pilares de conteúdo. Para cada pilar, explique seu objetivo, assuntos abordados, estágio do funil, formatos indicados e apresente cinco ideias de conteúdo.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Calendário de conteúdo</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Crie um calendário de conteúdo para [7, 15 ou 30] dias.
+
+Nicho: [nicho]
+Público: [público]
+Objetivo do período: [objetivo]
+Oferta que será promovida: [oferta]
+Frequência: [frequência]
+Formatos disponíveis: [formatos]
+Datas ou campanhas importantes: [datas]
+
+Para cada publicação, apresente:
+1. Dia
+2. Tema
+3. Formato
+4. Gancho
+5. Objetivo
+6. Estágio do funil
+7. CTA
+
+Distribua os conteúdos de forma equilibrada entre atração, autoridade, relacionamento e conversão.</pre>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-head"><span class="prompt-title">Transformar uma ideia em vários conteúdos</span><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button></div>
+          <pre class="prompt-text">Transforme esta ideia central em uma semana completa de conteúdo:
+
+[ideia, assunto, notícia ou aprendizado]
+
+Crie:
+1. Um Reels educativo
+2. Um Reels de opinião
+3. Um carrossel salvável
+4. Uma sequência de Stories
+5. Um post estático
+6. Uma legenda com storytelling
+7. Uma abordagem de venda relacionada
+
+Cada conteúdo deve explorar um ângulo diferente, sem apenas repetir a mesma mensagem em formatos distintos.</pre>
+        </div>
+
+      </div>
+    </details>
+
+  </section>
+
+  <footer>
+    <div class="brand">Hype Content</div>
+    <div>Menos tempo pensando no que postar.<br>Mais tempo construindo sua marca.</div>
+  </footer>
+
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tabbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Copy a prompt card's text
+  function copyPrompt(btn){
+    const card = btn.closest('.prompt-card');
+    const text = card.querySelector('.prompt-text').innerText;
+    copyText(text, btn);
+  }
+
+  // Copy a standalone block (context prompt) by element id
+  function copyBlock(btn, id){
+    const text = document.getElementById(id).innerText;
+    copyText(text, btn);
+  }
+
+  function copyText(text, btn){
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = 'Copiado ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1600);
+    }).catch(() => {
+      btn.textContent = 'Erro ao copiar';
+      setTimeout(() => { btn.textContent = 'Copiar'; }, 1600);
+    });
+  }
+</script>
+
+</body>
+</html>
